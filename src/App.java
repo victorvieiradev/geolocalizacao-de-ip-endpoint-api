@@ -3,13 +3,18 @@ import java.io.*;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.Scanner;
 
 import com.google.gson.Gson;
 
 public class App {
     public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Digite a url de um site: ");
+        String site = input.nextLine();
+        input.close();
         try{
-            String url = "http://ip-api.com/json/?fields=status,message,country,countryCode";
+            String url = "http://ip-api.com/json/"+site+"?fields=status,message,country,countryCode";
             HttpURLConnection conectar = (HttpURLConnection) new URL(url).openConnection();
             conectar.setRequestMethod("GET");
             conectar.setRequestProperty("accept", "application/json");
